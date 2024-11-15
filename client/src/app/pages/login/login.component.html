@@ -1,0 +1,59 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+    <div class="mb-3">
+      <h1>Login</h1>
+      <hr />
+      <label for="exampleInputEmail1" class="form-label">Email</label>
+      <span class="text-danger">*</span>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter your email..."
+        formControlName="email"
+      />
+      @if(email?.invalid && email?.touched) {
+      <div>
+        @if(email?.hasError('required')) {
+        <small id="emailHelp" class="text-danger"> Email is valid! </small>
+        } @if(email?.hasError('email')) {
+        <small id="emailHelp" class="text-danger">
+          Email is not correct!
+        </small>
+        }
+      </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <span class="text-danger">*</span>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Enter your password..."
+        formControlName="password"
+      />
+      @if(password?.invalid && password?.touched) {
+      <div>
+        @if(password?.hasError('required')) {
+        <small id="passwordHelp" class="text-danger">
+          Password is valid!
+        </small>
+        } @if(password?.hasError('minlength')) {
+        <small id="passwordHelp" class="text-danger">
+          Password is min 6 words!</small
+        >
+        }
+      </div>
+      }
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+    <a routerLink="/" class="btn btn-link w-100 mt-2"><<< Back to home</a>
+  </form>
+</div>

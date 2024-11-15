@@ -1,0 +1,112 @@
+<div class="col py-3" id="product-edit">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-8">
+        <form [formGroup]="editForm" (ngSubmit)="handleEdit()">
+          <h1>Update Product</h1>
+          <div class="mb-3">
+            <label for="title" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              formControlName="title"
+            />
+            @if(editForm.controls['title'].touched &&
+            editForm.controls['title'].errors?.['required']) {
+            <span class="text-danger text-small"
+              ><small>Title is Required</small></span
+            >
+            }
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input
+              type="text"
+              class="form-control"
+              id="image"
+              formControlName="image"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="price"
+              formControlName="price"
+            />
+            @if(editForm.controls['price'].touched &&
+            editForm.controls['price'].errors?.['required']) {
+            <span class="text-danger text-small"
+              ><small>Price is Required</small></span
+            >
+            }
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              formControlName="description"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select
+              class="form-control"
+              id="category"
+              formControlName="category"
+            >
+              <option value="">Select Category</option>
+              @for (category of categories; track category._id) {
+              <option value="{{ category._id }}">{{ category.name }}</option>
+              }
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="startAt" class="form-label">Start At</label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="startAt"
+              formControlName="startAt"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="endAt" class="form-label">End At</label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="endAt"
+              formControlName="endAt"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="times" class="form-label">Select Times</label>
+            <select class="form-control" id="times" formControlName="bidTime">
+              <option value="">Select Time</option>
+              <option value="15">15'</option>
+              <option value="30">30'</option>
+              <option value="60">1h</option>
+            </select>
+          </div>
+          <div class="mb-3 form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="isShow"
+              checked
+              formControlName="isShow"
+            />
+            <label class="form-check-label" for="isShow">Show Product</label>
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary w-100">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

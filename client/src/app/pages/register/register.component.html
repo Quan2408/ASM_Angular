@@ -1,0 +1,83 @@
+<div class="container">
+  <form [formGroup]="registerForm" (ngSubmit)="handleRegister()">
+    <h1>Create Account</h1>
+    <hr />
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Username</label>
+      <span class="text-danger">*</span>
+      <input
+        type="username"
+        class="form-control"
+        id="exampleInputUsername1"
+        aria-describedby="emailHelp"
+        placeholder="Enter your username..."
+        formControlName="username"
+      />
+      @if(username?.invalid && username?.touched) {
+      <div>
+        <small id="emailHelp" class="text-danger">
+          Username is not correct!
+        </small>
+      </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email</label>
+      <span class="text-danger">*</span>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter your email..."
+        formControlName="email"
+      />
+      @if(email?.invalid && email?.touched) {
+      <div>
+        @if(email?.hasError('required')) {
+        <small id="emailHelp" class="text-danger"> Email is valid! </small>
+        } @if(email?.hasError('email')) {
+        <small id="emailHelp" class="text-danger">
+          Email is not correct!
+        </small>
+        }
+      </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <span class="text-danger">*</span>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Enter your password..."
+        formControlName="password"
+      />
+      @if(password?.invalid && password?.touched) {
+      <div>
+        @if(password?.hasError('required')) {
+        <small id="passwordHelp" class="text-danger">
+          Password is valid!
+        </small>
+        } @if(password?.hasError('min')) {
+        <small id="passwordHelp" class="text-danger">
+          Password is min 6 words!</small
+        >
+        }
+      </div>
+      }
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Register</button>
+    <p>
+      Already have an account?
+      <a routerLink="/login" class="text btn btn-link w-100 text-center"
+        >Go to login >>></a
+      >
+    </p>
+  </form>
+</div>

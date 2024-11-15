@@ -1,0 +1,47 @@
+<div class="col py-3" id="bids">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col">
+        @if(product) {
+        <h1>Bids</h1>
+        <div class="card">
+          <div class="card-header">Product Info: {{ product.title }}</div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            @for (bid of product.bids; track bid._id) {
+            <tbody>
+              <tr>
+                <td>{{ bid.user.email }}</td>
+                <td>{{ bid.price }}</td>
+                <td>{{ bid.createdAt | date : "dd/MM/yyyy HH:mm:ss" }}</td>
+                <td>
+                  @if(bid.price === product.bidPriceMax && !bid.isWinBid) {
+                  <button
+                    (click)="handleSetBidWin(bid._id)"
+                    class="btn btn-info"
+                  >
+                    Set Win
+                  </button>
+                  } @else if (bid.isWinBid) {
+                  <span class="badge badge-success">Win Bid</span>
+                  }
+                </td>
+              </tr>
+            </tbody>
+
+            }
+          </table>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.col.py-3 {
+  margin-left: 160px; /* Phù hợp với chiều rộng của sidebar */
+}
+table {
+  margin-right: 30px;
+  width: 100%;
+}
